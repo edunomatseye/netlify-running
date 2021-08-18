@@ -24,7 +24,7 @@
             const message = await response.json()
             
             console.log(message);
-            responseText.innerHTML = JSON.parse(message.message);
+            responseText.innerHTML = message.message;
           }catch{
             err => console.error("Error Message: ", err)
           }
