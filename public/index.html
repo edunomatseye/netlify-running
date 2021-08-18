@@ -16,8 +16,17 @@
         const fetchBtn = document.getElementById("fetch-btn");
         const responseText = document.getElementById("response-output");
 
-        fetchBtn.addEventListener("click", () => {
-          responseText.innerText = "Static Text Replacement just in time.";
+        fetchBtn.addEventListener("click", async () => {
+          const url = "/.netlify/functions/hello-world"
+          fetch(url, {headers: {"Context-Type": "application/json"}})
+          .then(response => response.json())
+          .then(message => {
+            console.log(message);
+            responseText.innerHTML = message;
+          })
+          .catch(err => console.error("Error Message: ", err))
+          
+          //responseText.innerText = "Static Text Replacement just in time.";
         });
       });
     </script>
