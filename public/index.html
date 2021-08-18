@@ -18,14 +18,16 @@
 
         fetchBtn.addEventListener("click", async () => {
           const url = "/.netlify/functions/hello-world"
-          fetch(url, {headers: {"Context-Type": "application/json"}})
-          .then(response => response.json())
-          .then(message => {
+
+          try{
+            const response = await fetch(url)
+            const message = await response.json()
+            
             console.log(message);
             responseText.innerHTML = message;
-          })
-          .catch(err => console.error("Error Message: ", err))
-          
+          }catch{
+            err => console.error("Error Message: ", err)
+          }
           //responseText.innerText = "Static Text Replacement just in time.";
         });
       });
